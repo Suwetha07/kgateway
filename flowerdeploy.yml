@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flower-deployment
+  namespace: suwetha-ns
+  labels:
+    app: fit-app
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  selector: 
+    matchLabels:
+      app: flower
+  template:
+    metadata:
+      labels:
+        app: flower
+    spec:
+      containers:
+        - name: flower-conatiner
+          image: muralisocial123/kyndrl-flower-app:v1.1.0
+          ports:
+            - containerPort: 3015
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits: 
+              memory: "256Mi"
+              cpu: "200m"
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: fit-deployment-svc
+  namespace: suwetha-ns
+spec: 
+  selector:
+    app: fit
+  ports:
+    - port: 3001 # It is service post number we are using to expose the applicatioon to the internet
+      targetPort: 5000
+      protocol: TCP 
+  type: NodePort
