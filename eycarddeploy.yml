@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fit-deployment
+  name: ey-deployment
   namespace: suwetha-ns
   labels:
     app: fit-app
@@ -14,14 +14,14 @@ spec:
       maxSurge: 2
   selector: 
     matchLabels:
-      app: fit
+      app: ey
   template:
     metadata:
       labels:
-        app: fit
+        app: ey
     spec:
       containers:
-        - name: fit-conatiner
+        - name: ey-conatiner
           image: muralisocial123/ey-cart:v1.1.0
           ports:
             - containerPort: 3000
@@ -36,11 +36,11 @@ spec:
 apiVersion: v1 
 kind: Service
 metadata:
-  name: fit-deployment-svc
+  name: ey-deployment-svc
   namespace: suwetha-ns
 spec: 
   selector:
-    app: fit
+    app: ey
   ports:
     - port: 3001 # It is service post number we are using to expose the applicatioon to the internet
       targetPort: 3000

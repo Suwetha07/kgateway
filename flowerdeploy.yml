@@ -4,7 +4,7 @@ metadata:
   name: flower-deployment
   namespace: suwetha-ns
   labels:
-    app: fit-app
+    app: flower-app
 spec:
   replicas: 6
   strategy:
@@ -36,11 +36,11 @@ spec:
 apiVersion: v1 
 kind: Service
 metadata:
-  name: fit-deployment-svc
+  name: flower-deployment-svc
   namespace: suwetha-ns
 spec: 
   selector:
-    app: fit
+    app: flower
   ports:
     - port: 3001 # It is service post number we are using to expose the applicatioon to the internet
       targetPort: 5000

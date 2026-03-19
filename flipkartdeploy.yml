@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fit-deployment
+  name: flipkart-deployment
   namespace: suwetha-ns
   labels:
-    app: fit-app
+    app: flip-app
 spec:
   replicas: 6
   strategy:
@@ -14,14 +14,14 @@ spec:
       maxSurge: 2
   selector: 
     matchLabels:
-      app: fit
+      app: flip
   template:
     metadata:
       labels:
-        app: fit
+        app: flip
     spec:
       containers:
-        - name: fit-conatiner
+        - name: flip-conatiner
           image: muralisocial123/flipkart-clone-kuberox:v1.1.0
           ports:
             - containerPort: 80
@@ -36,11 +36,11 @@ spec:
 apiVersion: v1 
 kind: Service
 metadata:
-  name: fit-deployment-svc
+  name: flipkart-deployment-svc
   namespace: suwetha-ns
 spec: 
   selector:
-    app: fit
+    app: flip
   ports:
     - port: 3001 # It is service post number we are using to expose the applicatioon to the internet
       targetPort: 80
