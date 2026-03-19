@@ -4,7 +4,7 @@ metadata:
   name: micro-gateway
   namespace: suwetha-ns
 spec:
-  gatewayClassName: micro-gateway
+  gatewayClassName: gateway
   listeners:
   - name: http
     protocol: HTTP
