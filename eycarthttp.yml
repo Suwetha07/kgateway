@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ey-cart-route 
+  namespace: suwetha-ns
+spec:
+  parentRefs:
+    - name: suwetha-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /eycart
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: ey-deployment-svc
+          port: 3001
