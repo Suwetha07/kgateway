@@ -4,7 +4,7 @@ metadata:
   name: flower-deployment
   namespace: suwetha-ns
   labels:
-    app: flower-app
+    app: flower
 spec:
   replicas: 1
   strategy:
