@@ -4,7 +4,7 @@ metadata:
   name: suwetha-gateway
   namespace: suwetha-ns
 spec:
-  gatewayClassName: gateway
+  gatewayClassName: kgateway
   listeners:
   - name: http
     protocol: HTTP
